@@ -9,14 +9,9 @@ function MovieList() {
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
 
-
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
-
-// function viewDetails () {
-//     history.push(`/details/${movie.id}`)
-//}
 
     return (
         <main>
