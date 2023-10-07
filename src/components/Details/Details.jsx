@@ -18,7 +18,15 @@ export default function Details () {
 
     }, []);
 const movieStore = useSelector(store => store.movies)
+function goBack() {
+    history.push("/");
+
+}
 
 
-    return  (<div><p>I am a detail</p></div>)
+    return  (<div>
+        <button onClick={goBack} >Go Back</button>
+        <p>I am a detail</p>
+        
+        </div>)
 }
