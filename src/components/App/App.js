@@ -4,7 +4,6 @@ import MovieList from "../MovieList/MovieList";
 import Details from "../Details/Details";
 import MovieForm from "../MovieForm/MovieForm";
 
-
 function App() {
   return (
     <div className="App">
