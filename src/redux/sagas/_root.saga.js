@@ -4,6 +4,7 @@ import axios from "axios"
 // Create the rootSaga generator function
 function* watcherSaga() {
     yield takeEvery("FETCH_MOVIES", fetchAllMovies);
+    yield takeEvery("FETCH_GENRE", fetchGenre)
   }
   
   function* fetchAllMovies() {
@@ -16,5 +17,21 @@ function* watcherSaga() {
       console.log("get all error");
     }
   }
+
+function* fetchGenre(action) { 
+    console.log("aaaaand action!",action);
+    try {
+        console.log("in the fetch genre saga:", action.payload)
+        const response = yield axios.get(`/api/genre/${action.payload}`)
+        console.log("fetch genre response: ", response);
+        yield put({ type: 'SELECT_GENRE', payload: response.data })
+
+    } catch {
+        console.error(`error fetching genres`);
+    }
+}
+
+
+
   
 export default watcherSaga

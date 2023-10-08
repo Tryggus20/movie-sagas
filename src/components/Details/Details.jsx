@@ -1,22 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom"; // TODO: use to go back home
-
+import { useHistory, useParams } from "react-router-dom"; 
 export default function Details() {
   const dispatch = useDispatch();
-  const history = useHistory(); //TODO: use to go back to home
-  const movies = useSelector((store) => store.movies);
-  const genres = useSelector((store) => store.genres);
+  const history = useHistory(); 
+  const { id } = useParams(); // Extract the 'id' from the URL
 
-  console.log("I am movies", movies);
-  console.log("I am genres", genres);
+  const store = useSelector((store) => store);
+console.log("what is in store?", store);
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
-    dispatch({ type: "FETCH_GENRES" }); //not working yet
-    console.log("I am movies", movies);
-    console.log("I am genres", genres);
-  }, []);
-  const movieStore = useSelector((store) => store.movies);
+    dispatch({ type: "FETCH_GENRE", payload: id }); //not working yet
+  }, [dispatch, id]);
   function goBack() {
     history.push("/");
   }
@@ -24,13 +19,11 @@ export default function Details() {
   return (
     <div>
       <button onClick={goBack}>Go Back</button>
-      <hr />
-      <br />
+      <hr /><br />
       <p>Title: </p>
       <img src="images/finding-nemo.jpg" />
       <p>Description</p>
       <li>Genres</li>
-
       {/* title poster description name (name is the list of genres) */}
     </div>
   );
