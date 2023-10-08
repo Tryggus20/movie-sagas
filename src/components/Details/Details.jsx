@@ -26,7 +26,14 @@ function goBack() {
 
     return  (<div>
         <button onClick={goBack} >Go Back</button>
-        <p>I am a detail</p>
+        <hr/>
+        <br/>
+        <p>Title: </p>
+        <img src="images/finding-nemo.jpg" />
+        <p>Description</p>
+        <li>Genres</li>
+
+        {/* title poster description name (name is the list of genres) */}
         
         </div>)
 }
