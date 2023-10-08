@@ -29,8 +29,8 @@ function* fetchGenre(action) {
         console.log("fetch genre response: ", response);
         yield put({ type: 'SELECT_GENRE', payload: response.data })
 
-    } catch {
-        console.error(`error fetching genres`);
+    } catch (err) {
+        console.error(`error fetching genres for a specific movie`, err);
     }
 }
 
@@ -43,8 +43,8 @@ function* fetchMovie(action) {
         console.log("fetch single movie response: ", response);
         yield put({ type: 'SELECT_MOVIE', payload: response.data })
 
-    } catch {
-        console.error(`error fetching genres`);
+    } catch (err) {
+        console.error(`error fetching a specific movie`,err);
     }
 }
 
