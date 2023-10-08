@@ -21,7 +21,7 @@ const genres = (state = [], action) => {
 };
 
 const selectedGenre = (state = "", action) => {
-  //stores selected genres
+  //stores selected genres for details view
   switch (action.type) {
     case "SELECT_GENRE":
       return action.payload;
@@ -31,20 +31,20 @@ const selectedGenre = (state = "", action) => {
 };
 
 const selectedMovie = (state = {}, action) => {
-    //stores selected movie
-    switch (action.type) {
-      case "SELECT_MOVIE":
-        return action.payload;
-      default:
-        return state;
-    }
-  };
+  //stores selected movie for details view
+  switch (action.type) {
+    case "SELECT_MOVIE":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 const rootReducer = combineReducers({
   movies,
   genres,
   selectedGenre,
-  selectedMovie
+  selectedMovie,
 });
 
 export default rootReducer;

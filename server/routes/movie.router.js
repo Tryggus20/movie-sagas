@@ -17,7 +17,6 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   // Add query to get all info for a specific movie
-  console.log("_______________",req.params.id);
   const queryText = `SELECT * FROM movies WHERE movies.id = $1;`;
   pool
     .query(queryText, [req.params.id])

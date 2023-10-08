@@ -15,8 +15,11 @@ import createSagaMiddleware from "redux-saga";
 const sagaMiddleware = createSagaMiddleware();
 
 // Create one store that all components can use
-const storeInstance = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger))
-  // Add sagaMiddleware to our store ^
+const storeInstance = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware, logger)
+);
+// Add sagaMiddleware to our store ^
 
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(watcherSaga);

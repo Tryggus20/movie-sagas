@@ -19,6 +19,7 @@ function* watcherSaga() {
     }
   }
 
+// fetches specific movie for details view
 function* fetchGenre(action) { 
     // console.log("aaaaand action!",action);
     try {
@@ -33,6 +34,7 @@ function* fetchGenre(action) {
     }
 }
 
+// fetches specific movie for details view
 function* fetchMovie(action) { 
     // console.log("aaaaand action!",action);
     try {
