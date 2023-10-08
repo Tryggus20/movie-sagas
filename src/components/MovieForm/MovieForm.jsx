@@ -23,23 +23,21 @@ export default function MovieForm() {
         selectedValues.join(", ")
     );
   }
-
   return (
     <div>
       <button onClick={() => history.push("/")}>Go Back</button>
       <p>New Movie:</p>
       <div className="input-fields">
         <label>
-          Movie Title: <input type="text" id="title" placeholder="Title" />
+        <input type="text" id="title" placeholder="Title" />
         </label>
         <br />
         <label>
-          Movie Poster <input type="text" id="picture" placeholder="URL" />
+        <input type="text" id="picture" placeholder="URL" />
         </label>
         <br />
         <label>
-          Description: <input type="text" id="description" />
-        </label>
+        <textarea id="description" rows="2" placeholder="Description"></textarea>        </label>
         <br />
         {/* START OF TABLE HERE */}
         <p>Genres:</p>
@@ -102,7 +100,12 @@ export default function MovieForm() {
                 Epic
               </td>
               <td>
-                <input type="checkbox" id="fantasy" name="genre" value="fantasy" />
+                <input
+                  type="checkbox"
+                  id="fantasy"
+                  name="genre"
+                  value="fantasy"
+                />
                 Fantasy
               </td>
             </tr>
