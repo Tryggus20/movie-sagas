@@ -30,10 +30,21 @@ const selectedGenre = (state = "", action) => {
   }
 };
 
+const selectedMovie = (state = {}, action) => {
+    //stores selected movie
+    switch (action.type) {
+      case "SELECT_MOVIE":
+        return action.payload;
+      default:
+        return state;
+    }
+  };
+
 const rootReducer = combineReducers({
   movies,
   genres,
   selectedGenre,
+  selectedMovie
 });
 
 export default rootReducer;

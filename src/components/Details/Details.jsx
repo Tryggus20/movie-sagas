@@ -11,6 +11,7 @@ console.log("what is in store?", store);
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
     dispatch({ type: "FETCH_GENRE", payload: id }); //not working yet
+    dispatch({ type: "FETCH_MOVIE", payload: id})
   }, [dispatch, id]);
   function goBack() {
     history.push("/");

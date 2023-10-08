@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log(`error on GET querry for GENRES `, err);
+      console.log(`error on GET query for GENRES `, err);
       res.sendStatus(500);
     });
 });
