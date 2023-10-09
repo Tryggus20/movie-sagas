@@ -13,6 +13,7 @@ export default function MovieForm() {
   // getting array of genres for the new movie
   const genres = useSelector(state => state.genres)
   const dispatch = useDispatch()
+  console.log("selected genres", selectedGenres);
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
     if (checked) {
@@ -43,7 +44,6 @@ const handleSubmit = (event) => {
       <button onClick={() => history.push("/")}>Go Back</button>
       <br /> <br />
       <p>New Movie:</p>
-      <p>***CURRENTLY NOT WORKING CORECTLY ***</p>
       <br />
       <div className="input-fields">
         <label>

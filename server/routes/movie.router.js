@@ -15,8 +15,8 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-  console.log(req.body);
+router.post('/genre', (req, res) => {
+  console.log("in post for new movie", req.body);
   // RETURNING "id" will give us back the id of the created movie
   const insertMovieQuery = `
   INSERT INTO "movies" ("title", "poster", "description")
@@ -26,6 +26,7 @@ router.post('/', (req, res) => {
   // FIRST QUERY MAKES MOVIE
   pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
     .then(result => {
+      console.log("in first query req.body", req.body);
       console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
 
       const createdMovieId = result.rows[0].id
@@ -41,13 +42,13 @@ router.post('/', (req, res) => {
         res.sendStatus(201);
       }).catch(err => {
         // catch for second query
-        console.log(err);
+        console.log("----------",err);
         res.sendStatus(500)
       })
 
       // Catch for first query
     }).catch(err => {
-      console.log(err);
+      console.log("log for first query" ,err);
       res.sendStatus(500)
     })
 })

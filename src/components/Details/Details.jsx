@@ -11,7 +11,7 @@ export default function Details() {
   console.log("what is in store?", store);
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
-    dispatch({ type: "FETCH_GENRE", payload: id }); 
+    dispatch({ type: "FETCH_GENRE", payload: id });
     dispatch({ type: "FETCH_MOVIE", payload: id });
   }, [dispatch, id]);
   function goBack() {
@@ -23,19 +23,20 @@ export default function Details() {
       <button onClick={goBack}>Go Back</button>
       <hr />
       <br />
-      {selectedMovie &&
-      <>
-      <p>Title: {selectedMovie.title} </p>
-      <img src={selectedMovie.poster} />
-      <p>{selectedMovie.description}</p>
-      <ul>
-        <li>Genre(s):</li>
-{store.selectedGenre &&  store.selectedGenre.map((genre, index) => (
-    <li key={index}>{genre.name}</li>
-))}      </ul>
-</>
-}
-      {/* title poster description name (name is the list of genres) */}
+      {selectedMovie && (
+        <>
+          <p>Title: {selectedMovie.title} </p>
+          <img src={selectedMovie.poster} />
+          <p>{selectedMovie.description}</p>
+          <ul>
+            <li>Genre(s):</li>
+            {store.selectedGenre &&
+              store.selectedGenre.map((genre, index) => (
+                <li key={index}>{genre.name}</li>
+              ))}{" "}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
