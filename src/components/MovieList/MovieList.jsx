@@ -20,8 +20,10 @@ function MovieList() {
         Add A New Movie
       </button>
       <br /> <br />
+      <hr/>
       <section className="movies">
         {movies.map((movie) => {
+// maps over the movies and displays each one in a <div>
           return (
             <div
               className="movie-card"

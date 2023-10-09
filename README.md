@@ -10,9 +10,9 @@
 
 ## Description
 
-_Duration: 11 Hours _
+_Duration: 13 Hours _
 
-I have created an app where you can store a collection of movies. If you click on a poster, it takes you to the information page for that movie. it includes a description and the genres associated with the movie. You can click on the "Go Back" button to go back to the collection.
+I have created an app where you can store a collection of movies. If you click on a poster, it takes you to the information page for that movie. it includes a description and the genres associated with the movie. You can click on the "Go Back" button to go back to the collection. You can also add a new movie by clicking on the button on the home screen. It requires all inputs to be filled out including at least one geenre. If those conditions are not met you will recieve an alert. After you hit submit, the button brings you back to the collecton.
 
 ### Prerequisites
 

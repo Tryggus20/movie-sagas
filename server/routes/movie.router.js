@@ -37,6 +37,7 @@ router.post("/genre", (req, res) => {
       const createdMovieId = result.rows[0].id;
       const genreArray = req.body.genreIds;
       let sqlArrayValues = "";
+      //looping through array of genres so multiple genres can be added to the database for a single movie
       for (i = 2; i <= genreArray.length + 1; i++) {
         sqlArrayValues += `($1, $${i}),`;
       }

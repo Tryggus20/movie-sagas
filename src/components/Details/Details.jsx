@@ -10,6 +10,7 @@ export default function Details() {
   const selectedMovie = store.selectedMovie[0];
   console.log("what is in store?", store);
   useEffect(() => {
+    //getting specific movie from the list of movies as well as the genres attached
     dispatch({ type: "FETCH_MOVIES" });
     dispatch({ type: "FETCH_GENRE", payload: id });
     dispatch({ type: "FETCH_MOVIE", payload: id });
