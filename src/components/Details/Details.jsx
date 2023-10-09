@@ -29,6 +29,7 @@ export default function Details() {
       <img src={selectedMovie.poster} />
       <p>{selectedMovie.description}</p>
       <ul>
+        <li>Genre(s):</li>
 {store.selectedGenre &&  store.selectedGenre.map((genre, index) => (
     <li key={index}>{genre.name}</li>
 ))}      </ul>

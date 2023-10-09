@@ -1,11 +1,13 @@
-import {takeEvery, put} from "redux-saga/effects"
+import {takeEvery, put, call} from "redux-saga/effects"
 import axios from "axios"
 
 // Create the rootSaga generator function
 function* watcherSaga() {
     yield takeEvery("FETCH_MOVIES", fetchAllMovies);
-    yield takeEvery("FETCH_GENRE", fetchGenre)
-    yield takeEvery("FETCH_MOVIE", fetchMovie)
+    yield takeEvery("FETCH_GENRE", fetchGenre);
+    yield takeEvery("FETCH_MOVIE", fetchMovie);
+    yield takeEvery("FETCH_GENRES", fetchGenresSaga);
+    yield takeEvery("ADD_MOVIE", addMovieSaga)
   }
   
   function* fetchAllMovies() {
@@ -48,7 +50,40 @@ function* fetchMovie(action) {
     }
 }
 
+// fetch all genres to for MovieForm component
+function* fetchGenresSaga() {
+    try {
+        const response = yield call(axios.get, '/api/genres');
+        yield put({ type: 'SET_GENRES', payload: response.data });
+    } catch (error) {
+        console.log('Error fetching genres:', error);
+    }
+}
 
+// saga to add movie to the database
+function* addMovieSaga(action) {
+    try {
+        console.log("what is in my action payload for adding a movie?", action.payload);
+
+        // First, post the movie information and retrieve the new movie's ID
+        const response = yield call(axios.post, '/api/movie', {
+            title: action.payload.title,
+            poster: action.payload.poster,
+            description: action.payload.description,
+        });
+        const movieId = response.data.id;
+
+        // Convert string genre IDs to integers
+        const integerGenreIds = action.payload.genreIds.map(id => parseInt(id, 10));
+
+        // Iterate over the genre IDs and associate each one with the new movie
+        for (let genreId of integerGenreIds) {
+            yield call(axios.post, '/api/movie/', { movie_id: movieId, genre_id: genreId });
+        }
+    } catch (error) {
+        console.log('Error adding movie:',action.payload, error);
+    }
+}
 
 
   

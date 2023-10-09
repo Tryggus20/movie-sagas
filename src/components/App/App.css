@@ -25,14 +25,135 @@
     transform: rotate(360deg);
   }
 }
-.input-fields{
+.input-fields {
   justify-content: center;
   align-items: center;
-  height: 100vh;}
+  height: 100vh;
+}
 .input-table {
   margin: auto;
   text-align: left;
 }
 ul {
   list-style: none;
+}
+
+/* Container styling */
+.input-table tbody {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Checkbox + label styling */
+.input-table td {
+  flex-basis: calc(25% - 20px);
+  display: flex;
+  align-items: center;
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.movie-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  cursor: pointer;
+  width: 200px;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card h3 {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #f3f4f6;
+  color: #222222;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Raleway", sans-serif;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #2f4858;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.movie-card {
+  background-color: #fff;
+}
+
+.movie-card h3 {
+  color: #33658a;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #D1D4D8;
+  color: #222222;
+}
+
+button {
+  background-color: #3A6EA5;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+  outline: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #2A4D7F;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }

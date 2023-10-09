@@ -40,6 +40,7 @@ const selectedMovie = (state = {}, action) => {
   }
 };
 
+
 const rootReducer = combineReducers({
   movies,
   genres,

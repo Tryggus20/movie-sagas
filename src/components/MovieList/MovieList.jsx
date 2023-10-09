@@ -15,12 +15,16 @@ function MovieList() {
   return (
     <main>
       <h2>Movie Collection:</h2>
-      <button onClick={() => history.push('/movieForm')}>Add A New Movie</button>
-
+      <br />
+      <button onClick={() => history.push("/movieForm")}>
+        Add A New Movie
+      </button>
+      <br /> <br />
       <section className="movies">
         {movies.map((movie) => {
           return (
             <div
+              className="movie-card"
               key={movie.id}
               onClick={() => history.push(`/details/${movie.id}`)}
             >
