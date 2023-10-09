@@ -15,48 +15,57 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post('/genre', (req, res) => {
+router.post("/genre", (req, res) => {
   console.log("in post for new movie", req.body);
   // RETURNING "id" will give us back the id of the created movie
   const insertMovieQuery = `
   INSERT INTO "movies" ("title", "poster", "description")
   VALUES ($1, $2, $3)
-  RETURNING "id";`
+  RETURNING "id";`;
 
   // FIRST QUERY MAKES MOVIE
-  pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
-    .then(result => {
+  pool
+    .query(insertMovieQuery, [
+      req.body.title,
+      req.body.poster,
+      req.body.description,
+    ])
+    .then((result) => {
       console.log("in first query req.body", req.body);
-      console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
+      console.log("New Movie Id:", result.rows[0].id); //ID IS HERE!
 
-      const createdMovieId = result.rows[0].id
+      const createdMovieId = result.rows[0].id;
       const genreArray = req.body.genreIds;
-      let sqlArrayValues = '';
+      let sqlArrayValues = "";
       for (i = 2; i <= genreArray.length + 1; i++) {
         sqlArrayValues += `($1, $${i}),`;
       }
-      sqlArrayValues = sqlArrayValues.slice(0, -1); 
+      sqlArrayValues = sqlArrayValues.slice(0, -1);
       // Now handle the genre reference
       const insertMovieGenreQuery = `
       INSERT INTO "movies_genres" ("movie_id", "genre_id")
       VALUES  ${sqlArrayValues};
-      `
+      `;
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-      pool.query(insertMovieGenreQuery, [createdMovieId, genreArray]).then(result => {
-        //Now that both are done, send back success!
-        res.sendStatus(201);
-      }).catch(err => {
-        // catch for second query
-        console.log("----------",err);
-        res.sendStatus(500)
-      })
+      pool
+        .query(insertMovieGenreQuery, [createdMovieId, ...genreArray])
+        .then((result) => {
+          //Now that both are done, send back success!
+          res.sendStatus(201);
+        })
+        .catch((err) => {
+          // catch for second query
+          console.log("----------", err);
+          res.sendStatus(500);
+        });
 
       // Catch for first query
-    }).catch(err => {
-      console.log("log for first query" ,err);
-      res.sendStatus(500)
     })
-})
+    .catch((err) => {
+      console.log("log for first query", err);
+      res.sendStatus(500);
+    });
+});
 
 router.get("/:id", (req, res) => {
   // Add query to get all info for a specific movie
@@ -72,5 +81,5 @@ router.get("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
-  
+
 module.exports = router;
