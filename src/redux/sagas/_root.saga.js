@@ -61,32 +61,42 @@ function* fetchGenresSaga() {
 }
 
 // saga to add movie to the database
-function* addMovieSaga(action) {
-    try {
-        console.log("what is in my action payload for adding a movie?", action.payload);
+// function* addMovieSaga(action) {
+//     try {
+//         console.log("what is in my action payload for adding a movie?", action.payload);
 
-        // First, post the movie information and retrieve the new movie's ID
-        const response = yield call(axios.post, '/api/movie/genre', {
-            title: action.payload.title,
-            poster: action.payload.poster,
-            description: action.payload.description,
-        });
-        const movieId = response.data.id;
-/// *********** somewhere in here is the issue *******////
-        // Convert string genre IDs to integers
-        console.log("in root saga genreIds",genreIds);
-        const integerGenreIds = action.payload.genreIds.map(id => parseInt(id, 10));
-        console.log("Original genreIds:", action.payload.genreIds);
-        console.log("Parsed integerGenreIds:", integerGenreIds);
-        // Iterate over the genre IDs and associate each one with the new movie
-        for (let genreId of integerGenreIds) {
-            console.log("in root.saga loop movie id genr id",movieId, genreId);
-            yield call(axios.post, '/api/movie/genre', { movie_id: movieId, genre_id: genreId });
-        }
-    } catch (error) {
-        console.log('Error adding movie:', action.payload, error);
+//         // First, post the movie information and retrieve the new movie's ID
+//         const response = yield call(axios.post, '/api/movie/genre', {
+//             title: action.payload.title,
+//             poster: action.payload.poster,
+//             description: action.payload.description,
+//         });
+//         const movieId = response.data.id;
+// /// *********** somewhere in here is the issue *******////
+//         // Convert string genre IDs to integers
+//         console.log("in root saga genreIds",genreIds);
+//         const integerGenreIds = action.payload.genreIds.map(id => parseInt(id, 10));
+//         console.log("Original genreIds:", action.payload.genreIds);
+//         console.log("Parsed integerGenreIds:", integerGenreIds);
+//         // Iterate over the genre IDs and associate each one with the new movie
+//         for (let genreId of integerGenreIds) {
+//             console.log("in root.saga loop movie id genr id",movieId, genreId);
+//             yield call(axios.post, '/api/movie/genre', { movie_id: movieId, genre_id: genreId });
+//         }
+//     } catch (error) {
+//         console.log('Error adding movie:', action.payload, error);
+//     }
+// }
+function* addMovieSaga(action) {
+    const newMovie = action.payload;
+    try {
+      yield axios.post('/api/movie/genre', newMovie);
+      yield put({ type: 'FETCH_MOVIES' });
+    } catch (err) {
+      console.log('error in postNewMovie', err);
     }
-}
+  }
+  
 
 
   
